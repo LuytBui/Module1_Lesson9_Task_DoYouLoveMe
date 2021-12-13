@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <title>Do you love me?</title>
     <style>
-        button{
-            width:60px;
-            height:25px;
+        .bigButton{
+            width:70px;
+            height:40px;
+        }
+        .smallButton{
+            width:35px;
+            height:20px;
         }
     </style>
 </head>
 <body>
 <div id="promptDiv">
-    <h4>Do you love me?</h4>
-    <button id="yes" onclick="buttonYes()">Yes</button>
-    <button id="no" onclick="buttonNo()">No</button>
+    <h4 style="color:magenta">Do you love me?</h4>
+    <button id="yes" onclick="buttonYes()" style="color:green" class="bigButton">Yes</button>
+    <button id="no" onmouseover="buttonNo()" style="color:red" class="smallButton">No</button>
 </div>
     <script>
         const MAX_LEFT=600;
-        const MAX_TOP=600;
+        const MAX_TOP=400;
         let promptDiv = document.getElementById('promptDiv');
         promptDiv.style.position = 'absolute';
         promptDiv.style.left = 0;
@@ -28,10 +32,16 @@
             alert('I love you too! <3 <3 <3 ');
         }
         function buttonNo(){
-            let newLeft = Math.random()*MAX_LEFT;
-            let newTop = Math.random()*MAX_TOP;
-            promptDiv.style.left = newLeft + 'px';
-            promptDiv.style.top = newTop + 'px';
+            let newRandom = Math.random();
+            if (newRandom > 0.3) {
+                let newLeft = Math.random() * MAX_LEFT;
+                let newTop = Math.random() * MAX_TOP;
+                promptDiv.style.left = newLeft + 'px';
+                promptDiv.style.top = newTop + 'px';
+            } else {
+                let oldLeft = parseInt(promptDiv.style.left);
+                promptDiv.style.left = oldLeft + 55 + 'px';
+            }
         }
     </script>
 
